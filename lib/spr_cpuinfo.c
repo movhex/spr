@@ -36,10 +36,10 @@ spr_get_number_cpu(void)
 {
     spr_int_t ncpus;
 
-#if defined(_SC_NPROCESSORS_ONLN)
+#if (SPR_HAVE_SC_NPROC)
     ncpus = sysconf(_SC_NPROCESSORS_ONLN);
 #else
-#error "Failed to determine number of CPUs"
+    ncpus = 1;
 #endif
 
     if (ncpus <= 0) {

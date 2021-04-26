@@ -30,7 +30,8 @@
 #include "spr_semaphore.h"
 #include "spr_errno.h"
 
-#if (SPR_POSIX)
+
+#if (SPR_POSIX && SPR_HAVE_POSIX_SEM && !SPR_DARWIN)
 
 spr_err_t
 spr_semaphore_init(spr_semaphore_t *semaphore, spr_uint_t value,
@@ -87,6 +88,58 @@ spr_semaphore_fini(spr_semaphore_t *semaphore)
 {
     sem_destroy(&(semaphore->handle));
 }
+
+
+#elif (SPR_POSIX && SPR_HAVE_GCD_SEM)
+
+spr_err_t
+spr_semaphore_init(spr_semaphore_t *semaphore, spr_uint_t value,
+    spr_uint_t maxval, spr_bitfield_t params)
+{
+    dispatch_semaphore_t s;
+
+    (void) params;
+    (void) maxval;
+
+    s = dispatch_semaphore_create(value);
+    if (!s) {
+        return spr_get_errno();
+    }
+
+    semaphore->handle = s;
+
+    return SPR_OK;
+}
+
+spr_err_t
+spr_semaphore_wait(spr_semaphore_t *semaphore)
+{
+    dispatch_semaphore_wait(semaphore->handle, DISPATCH_TIME_FOREVER);
+    return SPR_OK;
+}
+
+spr_err_t
+spr_semaphore_trywait(spr_semaphore_t *semaphore)
+{
+    if (dispatch_semaphore_wait(semaphore->handle, DISPATCH_TIME_NOW) != 0) {
+        return SPR_BUSY;
+    }
+    return SPR_OK;
+}
+
+spr_err_t
+spr_semaphore_post(spr_semaphore_t *semaphore)
+{
+    dispatch_semaphore_signal(semaphore->handle);
+    return SPR_OK;
+}
+
+void
+spr_semaphore_fini(spr_semaphore_t *semaphore)
+{
+    (void) semaphore;
+}
+
 
 #elif (SPR_WIN32)
 

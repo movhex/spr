@@ -37,9 +37,54 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <errno.h>
+#include <signal.h>
+#include <time.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <glob.h>
+#include <pthread.h>
+#include <dlfcn.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/wait.h>
+#include <sys/syscall.h>
+#include <sys/ioctl.h>
+#include <pwd.h>
+#include <grp.h>
 
+#if (SPR_HAVE_POSIX_SEM)
+#include <semaphore.h>
+#endif
 
+#if (SPR_HAVE_GCD_SEM)
+#include <dispatch/dispatch.h>
+#endif
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <net/if.h>
+#include <netdb.h>
+
+#if (SPR_HAVE_MMAP)
+#include <sys/mman.h>
+#endif
+
+typedef int                            spr_fd_t;
+typedef struct stat                    spr_file_stat_t;
+typedef int                            spr_socket_t;
+typedef socklen_t                      spr_socklen_t;
 typedef uint64_t                       spr_tid_t;
+typedef pthread_t                      spr_thread_handle_t;
+typedef void *                         spr_thread_value_t;
+typedef struct tm                      spr_tm_t;
 
 #ifdef __cplusplus
 }

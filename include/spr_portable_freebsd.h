@@ -71,8 +71,8 @@
 #include <sys/mman.h>
 #endif
 
-#if (SPR_HAVE_SELECT)
-#include <sys/select.h>
+#if (SPR_HAVE_GCD_SEM)
+#include <dispatch/dispatch.h>
 #endif
 
 typedef int                            spr_fd_t;

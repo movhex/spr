@@ -27,13 +27,13 @@ The library covers next platform-independent functionality:
 
 ## Currently supported platforms
 
-* GNU/Linux (Debian 9/10, Fedora 32)
+* GNU/Linux
 * FreeBSD 12
+* macOS
 * Windows 7/8/10
 
 ## Planned platforms
 
-* macOS
 * Solaris
 
 The library is free and open-source software distributed under BSD 2-clause license.

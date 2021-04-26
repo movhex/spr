@@ -1,0 +1,18 @@
+#ifndef INCLUDED_SPR_CONFIG_H
+#define INCLUDED_SPR_CONFIG_H
+
+#cmakedefine SPR_LINUX 1
+#cmakedefine SPR_FREEBSD 1
+#cmakedefine SPR_DARWIN 1
+#cmakedefine SPR_SOLARIS 1
+#cmakedefine SPR_POSIX 1
+#cmakedefine SPR_WIN32 1
+
+#cmakedefine SPR_HAVE_MMAP 1
+#cmakedefine SPR_HAVE_D_TYPE 1
+#cmakedefine SPR_HAVE_SC_PAGESIZE 1
+#cmakedefine SPR_HAVE_SC_NPROC 1
+#cmakedefine SPR_HAVE_POSIX_SEM 1
+#cmakedefine SPR_HAVE_GCD_SEM 1
+
+#endif /* INCLUDED_SPR_CONFIG_H */

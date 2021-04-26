@@ -70,6 +70,10 @@ extern "C" {
 #include <sys/mman.h>
 #endif
 
+#if (SPR_HAVE_GCD_SEM)
+#include <dispatch/dispatch.h>
+#endif
+
 typedef int                            spr_fd_t;
 typedef struct stat                    spr_file_stat_t;
 typedef int                            spr_socket_t;

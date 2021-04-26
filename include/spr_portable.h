@@ -33,55 +33,7 @@
 extern "C" {
 #endif
 
-#if defined(__linux__) || defined(__gnu_linux__)
-#define SPR_SYSTEM_NAME  "GNU/Linux"
-#define SPR_LINUX    1
-#define SPR_FREEBSD  0
-#define SPR_DARWIN   0
-#define SPR_SOLARIS  0
-#define SPR_POSIX    1
-#define SPR_WIN32    0
-
-#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-#define SPR_SYSTEM_NAME  "FreeBSD"
-#define SPR_LINUX    0
-#define SPR_FREEBSD  1
-#define SPR_DARWIN   0
-#define SPR_SOLARIS  0
-#define SPR_POSIX    1
-#define SPR_WIN32    0
-
-#elif defined(__APPLE__) && defined(__MACH__)
-#define SPR_SYSTEM_NAME  "Darwin"
-#define SPR_LINUX    0
-#define SPR_FREEBSD  0
-#define SPR_DARWIN   1
-#define SPR_SOLARIS  0
-#define SPR_POSIX    1
-#define SPR_WIN32    0
-
-#elif defined(__sun) && defined(__SVR4)
-#define SPR_SYSTEM_NAME  "Solaris"
-#define SPR_LINUX    0
-#define SPR_FREEBSD  0
-#define SPR_DARWIN   0
-#define SPR_SOLARIS  1
-#define SPR_POSIX    1
-#define SPR_WIN32    0
-
-#elif defined(_WIN32) || defined(__WIN32__)
-#define SPR_SYSTEM_NAME  "Windows"
-#define SPR_LINUX    0
-#define SPR_FREEBSD  0
-#define SPR_DARWIN   0
-#define SPR_SOLARIS  0
-#define SPR_POSIX    0
-#define SPR_WIN32    1
-
-#else
-#error "Unsupported operating system"
-#endif
-
+#include "spr_config.h"
 
 #if (SPR_LINUX)
 #include "spr_portable_linux.h"

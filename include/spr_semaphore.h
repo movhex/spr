@@ -40,10 +40,16 @@ extern "C" {
 #define SPR_SEMAPHORE_PRIVATE        0x00000001
 #define SPR_SEMAPHORE_SHARED         0x00000002
 
-#if (SPR_POSIX)
+#if (SPR_POSIX && SPR_HAVE_POSIX_SEM && !SPR_DARWIN)
 
 struct spr_semaphore_s {
     sem_t handle;
+};
+
+#elif (SPR_POSIX && SPR_HAVE_GCD_SEM)
+
+struct spr_semaphore_s {
+    dispatch_semaphore_t handle;
 };
 
 #elif (SPR_WIN32)
