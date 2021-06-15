@@ -29,6 +29,10 @@
 #ifndef INCLUDED_SPR_PORTABLE_H
 #define INCLUDED_SPR_PORTABLE_H
 
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

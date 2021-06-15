@@ -29,6 +29,17 @@
 #ifndef INCLUDED_SPR_PORTABLE_SOLARIS_H
 #define INCLUDED_SPR_PORTABLE_SOLARIS_H
 
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#if defined(_MSC_VER)
+#pragma message("spr_portable_solaris.h is an internal header file and must \
+not be used directly. Please use spr_portable.h instead.")
+#else
+#warning "spr_portable_solaris.h is an internal header file and must not be \
+used directly. Please use spr_portable.h instead."
+#endif
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
