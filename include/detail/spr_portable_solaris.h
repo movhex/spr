@@ -26,42 +26,42 @@
  * SUCH DAMAGE.
  */
 
-#ifndef INCLUDED_SPR_PORTABLE_WIN32_H
-#define INCLUDED_SPR_PORTABLE_WIN32_H
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#if defined(_MSC_VER)
+#pragma message("spr_portable_solaris.h is an internal header file and must \
+not be used directly. Please use spr_portable.h instead.")
+#else
+#warning "spr_portable_solaris.h is an internal header file and must not be \
+used directly. Please use spr_portable.h instead."
+#endif
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
+
+#ifndef INCLUDED_SPR_PORTABLE_SOLARIS_H
+#define INCLUDED_SPR_PORTABLE_SOLARIS_H
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#if !defined(_SVID_SOURCE)
+#define _SVID_SOURCE
 #endif
 
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-#include <errno.h>
-#include <time.h>
 
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <wspiapi.h>
-#include <ws2ipdef.h>
-#include <windows.h>
-#include <process.h>
-#include <io.h>
 
-typedef HANDLE                         spr_fd_t;
-typedef BY_HANDLE_FILE_INFORMATION     spr_file_stat_t;
-typedef SOCKET                         spr_socket_t;
-typedef socklen_t                      spr_socklen_t;
-typedef DWORD                          spr_tid_t;
-typedef HANDLE                         spr_thread_handle_t;
-typedef DWORD                          spr_thread_value_t;
-typedef SYSTEMTIME                     spr_tm_t;
+
+#include <sys/ioctl.h>
+
+typedef int spr_socket_t;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* INCLUDED_SPR_PORTABLE_WIN32_H */
+#endif /* INCLUDED_SPR_PORTABLE_SOLARIS_H */

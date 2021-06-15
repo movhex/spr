@@ -26,14 +26,24 @@
  * SUCH DAMAGE.
  */
 
-#ifndef INCLUDED_SPR_PORTABLE_LINUX_H
-#define INCLUDED_SPR_PORTABLE_LINUX_H
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#if defined(_MSC_VER)
+#pragma message("spr_portable_win32.h is an internal header file and must \
+not be used directly. Please use spr_portable.h instead.")
+#else
+#warning "spr_portable_win32.h is an internal header file and must not be \
+used directly. Please use spr_portable.h instead."
+#endif
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
+#ifndef INCLUDED_SPR_PORTABLE_WIN32_H
+#define INCLUDED_SPR_PORTABLE_WIN32_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -42,49 +52,27 @@ extern "C" {
 #include <stdarg.h>
 #include <string.h>
 #include <errno.h>
-#include <signal.h>
 #include <time.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <glob.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <dlfcn.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/wait.h>
-#include <sys/syscall.h>
-#include <pwd.h>
-#include <grp.h>
 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <arpa/inet.h>
-#include <net/if.h>
-#include <netdb.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <wspiapi.h>
+#include <ws2ipdef.h>
+#include <windows.h>
+#include <process.h>
+#include <io.h>
 
-#if (SPR_HAVE_MMAP)
-#include <sys/mman.h>
-#endif
-
-#if (SPR_HAVE_GCD_SEM)
-#include <dispatch/dispatch.h>
-#endif
-
-typedef int                            spr_fd_t;
-typedef struct stat                    spr_file_stat_t;
-typedef int                            spr_socket_t;
+typedef HANDLE                         spr_fd_t;
+typedef BY_HANDLE_FILE_INFORMATION     spr_file_stat_t;
+typedef SOCKET                         spr_socket_t;
 typedef socklen_t                      spr_socklen_t;
-typedef pid_t                          spr_tid_t;
-typedef pthread_t                      spr_thread_handle_t;
-typedef void *                         spr_thread_value_t;
-typedef struct tm                      spr_tm_t;
+typedef DWORD                          spr_tid_t;
+typedef HANDLE                         spr_thread_handle_t;
+typedef DWORD                          spr_thread_value_t;
+typedef SYSTEMTIME                     spr_tm_t;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* INCLUDED_SPR_PORTABLE_LINUX_H */
+#endif /* INCLUDED_SPR_PORTABLE_WIN32_H */

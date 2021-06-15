@@ -26,11 +26,26 @@
  * SUCH DAMAGE.
  */
 
-#ifndef INCLUDED_SPR_PORTABLE_DARWIN_H
-#define INCLUDED_SPR_PORTABLE_DARWIN_H
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#if defined(_MSC_VER)
+#pragma message("spr_portable_linux.h is an internal header file and must \
+not be used directly. Please use spr_portable.h instead.")
+#else
+#warning "spr_portable_linux.h is an internal header file and must not be \
+used directly. Please use spr_portable.h instead."
+#endif
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
+#ifndef INCLUDED_SPR_PORTABLE_LINUX_H
+#define INCLUDED_SPR_PORTABLE_LINUX_H
 
 #ifdef __cplusplus
-}
+extern "C" {
+#endif
+
+#if !defined(_GNU_SOURCE)
+#define _GNU_SOURCE
 #endif
 
 #include <stdio.h>
@@ -48,23 +63,15 @@
 #include <dirent.h>
 #include <glob.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <sys/syscall.h>
-#include <sys/ioctl.h>
 #include <pwd.h>
 #include <grp.h>
-
-#if (SPR_HAVE_POSIX_SEM)
-#include <semaphore.h>
-#endif
-
-#if (SPR_HAVE_GCD_SEM)
-#include <dispatch/dispatch.h>
-#endif
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -77,11 +84,15 @@
 #include <sys/mman.h>
 #endif
 
+#if (SPR_HAVE_GCD_SEM)
+#include <dispatch/dispatch.h>
+#endif
+
 typedef int                            spr_fd_t;
 typedef struct stat                    spr_file_stat_t;
 typedef int                            spr_socket_t;
 typedef socklen_t                      spr_socklen_t;
-typedef uint64_t                       spr_tid_t;
+typedef pid_t                          spr_tid_t;
 typedef pthread_t                      spr_thread_handle_t;
 typedef void *                         spr_thread_value_t;
 typedef struct tm                      spr_tm_t;
@@ -90,4 +101,4 @@ typedef struct tm                      spr_tm_t;
 }
 #endif
 
-#endif /* INCLUDED_SPR_PORTABLE_DARWIN_H */
+#endif /* INCLUDED_SPR_PORTABLE_LINUX_H */

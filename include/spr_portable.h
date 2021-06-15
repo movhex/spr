@@ -29,6 +29,10 @@
 #ifndef INCLUDED_SPR_PORTABLE_H
 #define INCLUDED_SPR_PORTABLE_H
 
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -36,19 +40,19 @@ extern "C" {
 #include "spr_config.h"
 
 #if (SPR_LINUX)
-#include "spr_portable_linux.h"
+#include "detail/spr_portable_linux.h"
 
 #elif (SPR_FREEBSD)
-#include "spr_portable_freebsd.h"
+#include "detail/spr_portable_freebsd.h"
 
 #elif (SPR_DARWIN)
-#include "spr_portable_darwin.h"
+#include "detail/spr_portable_darwin.h"
 
 #elif (SPR_SOLARIS)
-#include "spr_portable_solaris.h"
+#include "detail/spr_portable_solaris.h"
 
 #elif (SPR_WIN32)
-#include "spr_portable_win32.h"
+#include "detail/spr_portable_win32.h"
 
 #endif
 
@@ -73,5 +77,7 @@ typedef struct spr_semaphore_s         spr_semaphore_t;
 #ifdef __cplusplus
 }
 #endif
+
+#undef SPR_INCLUDE_INTERNAL_HEADERS
 
 #endif /* INCLUDED_SPR_PORTABLE_H */

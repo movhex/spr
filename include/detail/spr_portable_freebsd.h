@@ -26,6 +26,17 @@
  * SUCH DAMAGE.
  */
 
+#if !defined(SPR_INCLUDE_INTERNAL_HEADERS)
+#if defined(_MSC_VER)
+#pragma message("spr_portable_freebsd.h is an internal header file and must \
+not be used directly. Please use spr_portable.h instead.")
+#else
+#warning "spr_portable_freebsd.h is an internal header file and must not be \
+used directly. Please use spr_portable.h instead."
+#endif
+#define SPR_INCLUDE_INTERNAL_HEADERS
+#endif
+
 #ifndef INCLUDED_SPR_PORTABLE_FREEBSD_H
 #define INCLUDED_SPR_PORTABLE_FREEBSD_H
 
@@ -33,7 +44,10 @@
 }
 #endif
 
+#if !defined(_BSD_SOURCE)
 #define _BSD_SOURCE
+#endif
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
